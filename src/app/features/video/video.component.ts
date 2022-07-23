@@ -18,8 +18,9 @@ export class VideoComponent implements OnInit {
   ngOnInit(): void {
     const front = false;
     navigator.mediaDevices
-    .getUserMedia({ video: { facingMode: (front ? "user" : "environment") } })
+    .getUserMedia({ audio: true, video: { facingMode: (front ? "user" : "environment") } })
     .then((stream) => {
+      // window.URL.createObjectURL(stream)
       this.stream = stream;
       this.streamStatus = true;
     })
