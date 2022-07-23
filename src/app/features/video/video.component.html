@@ -2,4 +2,13 @@
 
   <video #video autoplay [srcObject]="stream"></video>
   <!-- <canvas #canvas width="640" height="480"></canvas> -->
+  <div class="command-bar">
+    <button type="button" (click)="log(':)')">:)</button>
+    <button type="button" (click)="log(':|')">:|</button>
+    <button type="button" (click)="log(':(')">:(</button>
+  </div>
+
+  <div class="stop">
+    <button *ngIf="stream?.active" (click)="toggle()">{{streamStatus ? '||' : '>'}}</button>
+  </div>
 </div>
