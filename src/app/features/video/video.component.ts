@@ -16,8 +16,9 @@ export class VideoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const front = false;
     navigator.mediaDevices
-    .getUserMedia({ video: true })
+    .getUserMedia({ video: { facingMode: (front ? "user" : "environment") } })
     .then((stream) => {
       this.stream = stream;
       this.streamStatus = true;
@@ -32,6 +33,14 @@ export class VideoComponent implements OnInit {
     const self = this;
     this.stream.getTracks().forEach(function(track) {
       track.enabled = !track.enabled;
+      self.streamStatus = track.enabled;
+    });
+  }
+
+  // 
+  flip(){
+    const self = this;
+    this.stream.getTracks().forEach(function(track) {
       self.streamStatus = track.enabled;
     });
   }
